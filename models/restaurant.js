@@ -4,6 +4,14 @@ const restaurantSchema = new Schema({
   name: {
     type: String,
     require: true
-  }
+  },
+  name_en: String,
+  category: String,
+  image: String,
+  location: String,
+  phone: String,
+  google_map: String,
+  rating: String,
+  description: String
 })
-module.exports = mongoose.model('restaurant', restaurantSchema)
+module.exports = mongoose.model('Restaurant', restaurantSchema)
