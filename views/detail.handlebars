@@ -23,6 +23,9 @@
       <h5>
         <a href="/restaurants/{{ restaurant._id }}/edit">edit</a>
       </h5>
+      <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+        <button type="submit">delete</button>
+      </form>
       </p>
       <p class="mb-1">
         <span class="text-secondary">
