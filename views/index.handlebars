@@ -7,7 +7,7 @@
           width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
         今晚我想來點...
       </a>
-      <a class="btn btn-secondary" href="/restaurants/new">新增餐廳</a>
+      <a class="btn btn-outline-secondary" href="/restaurants/new">新增餐廳</a>
     </div>
   </nav>
 
@@ -33,14 +33,14 @@
     </div>
     <form action="/sort">
       <div class="form-group">
-        <select name="sort" id="sort" class="btn btn-secondary p-2">
+        <select name="sort" id="sort" class="btn btn-outline-primary p-2">
           <option value="Sort" disabled selected hidden>Sort</option>
           <option value="asc">A->Z</option>
           <option value="desc">Z->A</option>
           <option value="category">類別</option>
           <option value="location">地區</option>
         </select>
-        <button class="btn btn-primary" type="submit">送出</button>
+        <button class="btn btn-outline-primary" type="submit">送出</button>
       </div>
     </form>
   </div>
@@ -67,10 +67,10 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
               <div class="text-right">
-                <a href="./restaurants/{{ this._id }}">detail</a>
-                <a href="./restaurants/{{ this._id }}/edit">edit</a>
+                <a class="btn btn-outline-secondary" href="./restaurants/{{ this._id }}">detail</a>
+                <a class="btn btn-outline-success" href="./restaurants/{{ this._id }}/edit">edit</a>
                 <form action="./restaurants/{{ this._id }}/delete" method="POST" style="display: inline;">
-                  <button type="submit">delete</button>
+                  <button class="btn btn-outline-danger" type="submit">delete</button>
                 </form>
               </div>
             </div>

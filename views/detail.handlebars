@@ -20,12 +20,12 @@
     <div class="col-12 col-md-10 mx-auto">
 
       <p class="mb-1">
-      <h5>
-        <a href="/restaurants/{{ restaurant._id }}/edit">edit</a>
-      </h5>
-      <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
-        <button type="submit">delete</button>
-      </form>
+      <div class="d-flex justify-content-end">
+        <a class="btn btn-outline-success btn-lg m-1" href="/restaurants/{{ restaurant._id }}/edit">edit</a>
+        <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+          <button class="btn btn-outline-danger btn-lg m-1" type="submit">delete</button>
+        </form>
+      </div>
       </p>
       <p class="mb-1">
         <span class="text-secondary">
