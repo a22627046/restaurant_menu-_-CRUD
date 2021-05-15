@@ -5,6 +5,7 @@ const port = 3000
 const exphbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+const helpers = require('handlebars-helpers')()
 
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost/restaurant_menu_CRUD', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -33,6 +34,38 @@ app.get('/', (req, res) => {
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
 })
+
+app.get('/sort', (req, res) => {
+  const sortList = req.query.sort
+
+  if (sortList === 'asc') {
+    return Restaurant.find()
+      .lean()
+      .sort({ name: 'asc' })
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  } if (sortList === 'desc') {
+    return Restaurant.find()
+      .lean()
+      .sort({ name: 'desc' })
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  } if (sortList === 'category') {
+    return Restaurant.find()
+      .lean()
+      .sort({ category: 'asc' })
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  } if (sortList === 'location') {
+    return Restaurant.find()
+      .lean()
+      .sort({ location: 'asc' })
+      .then(restaurants => res.render('index', { restaurants }))
+      .catch(error => console.error(error))
+  }
+})
+
+
 
 app.get('/restaurants/new', (req, res) => {
   return res.render('new')
@@ -80,7 +113,7 @@ app.post('/restaurants/:id/edit', (req, res) => {
 
       return restaurant.save()
     })
-    .then(() => res.redirect(`/restaurants/${id}`))
+    .then(() => res.redirect(`/restaurants/${id}/edit`))
     .catch(error => console.log(error))
 })
 
@@ -97,12 +130,17 @@ app.post('/restaurants/:id/delete', (req, res) => {
 
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => {
-    const name = restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-    const category = restaurant.category.includes(keyword)
-    return (name || category)
-  })
-  res.render('index', { restaurants: restaurants })
+  return Restaurant.find()
+    .lean()
+    .then(restaurantList =>
+      restaurantList.filter(restaurant => {
+        const name = restaurant.name.toLowerCase().includes(keyword.toLowerCase())
+        const category = restaurant.category.includes(keyword)
+        return (name || category)
+      })
+    )
+    .then(restaurants => res.render('index', { restaurants: restaurants }))
+    .catch(error => console.log(error))
 })
 
 
