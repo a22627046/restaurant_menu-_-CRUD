@@ -1,51 +1,53 @@
-<div class="container py-5">
+<div class="container d-flex justify-content-center py-5">
   <form action="/restaurants/{{ restaurant._id }}?_method=PUT" method="POST">
     <div class="form-group">
       <i class="fas fa-hamburger pr-2"></i>
       <label for="name">餐廳名稱 :</label>
-      <input type="text" placeholder="餐廳名稱" name="name" value="{{ restaurant.name }}">
+      <input type="text" placeholder="請輸入餐廳名稱..." name="name" value="{{ restaurant.name }}" required>
     </div>
     <div class="form-group">
       <i class="fas fa-font"></i>
       <label for="name">餐廳英文名稱 :</label>
-      <input type="text" placeholder="餐廳英文名稱" name="name_en" value="{{ restaurant.name_en }}">
+      <input type="text" placeholder="請輸入餐廳英文名稱..." name="name_en" value="{{ restaurant.name_en }}">
     </div>
     <div class="form-group">
       <i class="fas fa-utensils pr-2"></i>
       <label for="name">餐廳類別 :</label>
-      <input type="text" placeholder="餐廳類別" name="category" value="{{ restaurant.category }}">
+      <input type="text" placeholder="請輸入餐廳類別..." name="category" value="{{ restaurant.category }}" required>
     </div>
     <div class=" form-group">
       <i class="fas fa-map-marker-alt pr-2"></i>
       <label for="name">餐廳地址 :</label>
-      <input type="text" placeholder="餐廳地址" name="location" value="{{ restaurant.location }}">
+      <input type="text" placeholder="請輸入餐廳地址..." name="location" value="{{ restaurant.location }}" required>
     </div>
     <div class="form-group">
       <i class="fas fa-location-arrow pr-2 fa-xs"></i>
       <label for="name"> Google Map :</label>
-      <input type="text" placeholder="餐廳 googlemap" name="google_map" value="{{ restaurant.google_map }}">
+      <input type="text" placeholder="https://" name="google_map" value="{{ restaurant.google_map }}" required>
     </div>
     <div class="form-group">
       <i class="fas fa-mobile-alt pr-2"></i>
       <label for="name">餐廳電話 :</label>
-      <input type="text" placeholder="餐廳電話" name="phone" value="{{ restaurant.phone }}">
+      <input type="text" placeholder="請輸入餐廳電話..." name="phone" value="{{ restaurant.phone }}" required>
     </div>
     <div class="form-group">
       <i class="fas fa-star fa-xs"></i>
       <label for="name">餐廳評分 :</label>
-      <input type="text" placeholder="1~5分" name="rating" value="{{ restaurant.rating }}">
+      <input type="text" placeholder="1~5分" name="rating" value="{{ restaurant.rating }}" required>
     </div>
     <div class="form-group">
       <i class="fas fa-pencil-alt"></i>
       <label for="name">餐廳敘述 :</label>
-      <input type="text" placeholder="餐廳敘述" name="description" value="{{ restaurant.description }}">
+      <input type="text" placeholder="請輸入餐廳敘述..." name="description" value="{{ restaurant.description }}">
     </div>
     <div class="form-group">
       <i class="fas fa-images"></i>
       <label for="name">餐廳圖片 :</label>
-      <input type="text" placeholder="餐廳圖片" name="image" value="{{ restaurant.image }}">
+      <input type="text" placeholder="https://" name="image" value="{{ restaurant.image }}" required>
     </div>
-    <button class="btn btn-outline-success" type="submit">儲存</button>
-    <a class="btn btn-outline-primary" href="/restaurants/{{restaurant._id}}">返回</a>
+    <div class="form-group d-flex justify-content-end">
+      <button class="btn btn-outline-success m-1" type="submit">儲存</button>
+      <a class="btn btn-outline-primary m-1" href="/restaurants/{{restaurant._id}}">返回</a>
+    </div>
   </form>
 </div>
