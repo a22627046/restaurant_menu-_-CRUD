@@ -34,62 +34,6 @@ app.use(methodOverride('_method'))
 // 將 request 導入路由器
 app.use(routes)
 
-
-
-
-
-app.get('/sort', (req, res) => {
-  const sortList = req.query.sort
-
-  if (sortList === 'asc') {
-    return Restaurant.find()
-      .lean()
-      .sort({ name: 'asc' })
-      .then(restaurants => res.render('index', { restaurants }))
-      .catch(error => console.error(error))
-  } if (sortList === 'desc') {
-    return Restaurant.find()
-      .lean()
-      .sort({ name: 'desc' })
-      .then(restaurants => res.render('index', { restaurants }))
-      .catch(error => console.error(error))
-  } if (sortList === 'category') {
-    return Restaurant.find()
-      .lean()
-      .sort({ category: 'asc' })
-      .then(restaurants => res.render('index', { restaurants }))
-      .catch(error => console.error(error))
-  } if (sortList === 'location') {
-    return Restaurant.find()
-      .lean()
-      .sort({ location: 'asc' })
-      .then(restaurants => res.render('index', { restaurants }))
-      .catch(error => console.error(error))
-  }
-})
-
-
-
-
-
-
-
-app.get('/search', (req, res) => {
-  const keyword = req.query.keyword
-  return Restaurant.find()
-    .lean()
-    .then(restaurantList =>
-      restaurantList.filter(restaurant => {
-        const name = restaurant.name.toLowerCase().includes(keyword.toLowerCase())
-        const category = restaurant.category.includes(keyword)
-        return (name || category)
-      })
-    )
-    .then(restaurants => res.render('index', { restaurants: restaurants }))
-    .catch(error => console.log(error))
-})
-
-
 app.listen(port, () => {
   console.log(`App is running on http://localhost:${port}`)
 })
