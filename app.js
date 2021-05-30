@@ -1,7 +1,5 @@
 const express = require('express')
 const session = require('express-session')
-const port = 3000
-
 const exphbs = require('express-handlebars')
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
@@ -19,6 +17,7 @@ const usePassport = require('./config/passport')
 require('./config/mongoose')
 
 const app = express()
+const PORT = process.env.PORT
 
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
@@ -49,6 +48,6 @@ app.use((req, res, next) => {
 // 將 request 導入路由器
 app.use(routes)
 
-app.listen(port, () => {
-  console.log(`App is running on http://localhost:${port}`)
+app.listen(PORT, () => {
+  console.log(`App is running on http://localhost:${PORT}`)
 })
