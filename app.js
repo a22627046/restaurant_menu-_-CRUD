@@ -8,6 +8,11 @@ const bodyParser = require('body-parser')
 const methodOverride = require('method-override')
 const helpers = require('handlebars-helpers')()
 const flash = require('connect-flash')
+
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
+
 // 引用路由器
 const routes = require('./routes')
 const usePassport = require('./config/passport')
@@ -19,7 +24,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 app.use(session({
-  secret: 'ThisIsMySecret',
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: true
 }))
