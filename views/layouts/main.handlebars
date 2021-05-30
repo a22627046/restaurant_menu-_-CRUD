@@ -13,6 +13,28 @@
 </head>
 
 <body class="bg-gray">
+  <header>
+    <!-- navigation -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+          今晚{{#if isAuthenticated}}{{ user.name}}{{/if}}想來點...
+        </a>
+        {{#if isAuthenticated}}
+        <div class="d-flex justify-content-end">
+          <a class="btn btn-outline-secondary m-1" href="/restaurants/new">新增餐廳</a>
+          <a href="/users/logout" class="btn btn-outline-secondary m-1">Logout</a>
+        </div>
+        {{else}}
+        <a href="/users/login" class="btn btn-outline-secondary">Login</a>
+        {{/if}}
+      </div>
+    </nav>
+
+    <div class="banner"></div>
+  </header>
   {{{body}}}
   <script src="https://kit.fontawesome.com/99a6e9a190.js" crossorigin="anonymous"></script>
   <script src="/javascripts/jquery-3.3.1.js"></script>
