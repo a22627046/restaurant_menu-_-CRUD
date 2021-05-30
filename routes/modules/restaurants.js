@@ -34,7 +34,6 @@ router.get('/sort', (req, res) => {
   }
 })
 
-
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
   return Restaurant.find()
@@ -46,10 +45,9 @@ router.get('/search', (req, res) => {
         return (name || category)
       })
     )
-    .then(restaurants => res.render('index', { restaurants: restaurants }))
+    .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.log(error))
 })
-
 
 router.get('/new', (req, res) => {
   return res.render('new')
