@@ -5,7 +5,8 @@ const router = express.Router()
 const Restaurant = require('../../models/restaurant')
 // 定義首頁路由
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.error(error))
@@ -13,7 +14,8 @@ router.get('/', (req, res) => {
 
 router.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  return Restaurant.find()
+  const userId = req.user._id
+  return Restaurant.find({ userId })
     .lean()
     .then(restaurantList =>
       restaurantList.filter(restaurant => {
@@ -28,27 +30,27 @@ router.get('/search', (req, res) => {
 
 router.get('/sort', (req, res) => {
   const sortList = req.query.sort
-
+  const userId = req.user._id
   if (sortList === 'asc') {
-    return Restaurant.find()
+    return Restaurant.find({ userId })
       .lean()
       .sort({ name: 'asc' })
       .then(restaurants => res.render('index', { restaurants }))
       .catch(error => console.error(error))
   } if (sortList === 'desc') {
-    return Restaurant.find()
+    return Restaurant.find({ userId })
       .lean()
       .sort({ name: 'desc' })
       .then(restaurants => res.render('index', { restaurants }))
       .catch(error => console.error(error))
   } if (sortList === 'category') {
-    return Restaurant.find()
+    return Restaurant.find({ userId })
       .lean()
       .sort({ category: 'asc' })
       .then(restaurants => res.render('index', { restaurants }))
       .catch(error => console.error(error))
   } if (sortList === 'location') {
-    return Restaurant.find()
+    return Restaurant.find({ userId })
       .lean()
       .sort({ location: 'asc' })
       .then(restaurants => res.render('index', { restaurants }))
